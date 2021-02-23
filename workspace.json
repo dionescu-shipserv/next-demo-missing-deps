@@ -1,20 +1,11 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
+  "cli": { "defaultCollection": "@nrwl/next" },
   "defaultProject": "next-demo",
   "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
+    "@nrwl/react": { "application": { "babel": true } },
     "@nrwl/next": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
+      "application": { "style": "styled-components", "linter": "eslint" }
     }
   },
   "projects": {
@@ -30,16 +21,11 @@
             "root": "apps/next-demo",
             "outputPath": "dist/apps/next-demo"
           },
-          "configurations": {
-            "production": {}
-          }
+          "configurations": { "production": {} }
         },
         "serve": {
           "executor": "@nrwl/next:server",
-          "options": {
-            "buildTarget": "next-demo:build",
-            "dev": true
-          },
+          "options": { "buildTarget": "next-demo:build", "dev": true },
           "configurations": {
             "production": {
               "buildTarget": "next-demo:build:production",
@@ -49,9 +35,7 @@
         },
         "export": {
           "executor": "@nrwl/next:export",
-          "options": {
-            "buildTarget": "next-demo:build:production"
-          }
+          "options": { "buildTarget": "next-demo:build:production" }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
@@ -82,15 +66,30 @@
             "devServerTarget": "next-demo:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "next-demo:serve:production"
-            }
+            "production": { "devServerTarget": "next-demo:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/next-demo-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/ui/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
           "options": {
-            "lintFilePatterns": ["apps/next-demo-e2e/**/*.{js,ts}"]
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
